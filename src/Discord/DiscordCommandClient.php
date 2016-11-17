@@ -67,6 +67,8 @@ class DiscordCommandClient extends Discord
                 if (substr($message->content, 0, strlen($this->commandClientOptions['prefix'])) == $this->commandClientOptions['prefix']) {
                     $withoutPrefix = substr($message->content, strlen($this->commandClientOptions['prefix']));
                     $args = str_getcsv($withoutPrefix, ' ');
+                    $args = array_values(array_filter($args));
+
                     $command = array_shift($args);
 
                     if (array_key_exists($command, $this->commands)) {
